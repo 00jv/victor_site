@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
+import TechCircuit from "./TechCircuit";
 interface SkillItem {
   name: string;
   level: "Especialista" | "Intermediário" | "Básico";
@@ -216,7 +216,9 @@ export default function Skills() {
   ];
 
   return (
-    <section className="px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16 relative" id="skills">
+    <div className="relative w-full overflow-hidden">
+      <TechCircuit />
+      <section className="px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16 relative z-10" id="skills">
       {/* Background ambient light */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
 
@@ -306,5 +308,6 @@ export default function Skills() {
         ))}
       </div>
     </section>
+    </div>
   );
 }

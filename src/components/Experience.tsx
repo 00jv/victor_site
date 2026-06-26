@@ -1,5 +1,5 @@
 import React from "react";
-
+import TechLines from "./TechLines";
 interface Job {
   role: string;
   company: string;
@@ -55,7 +55,9 @@ const history: Job[] = [
 
 export default function Experience() {
   return (
-    <section className="px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16" id="trajetoria">
+    <div className="relative w-full overflow-hidden">
+      <TechLines />
+      <section className="relative z-10 px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16" id="trajetoria">
       <div className="text-center max-w-3xl mx-auto mb-12">
         <span className="inline-block border border-primary/20 text-primary bg-primary/5 font-label-caps text-label-caps px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
           Minha Trajetória
@@ -112,5 +114,6 @@ export default function Experience() {
         ))}
       </div>
     </section>
+    </div>
   );
 }

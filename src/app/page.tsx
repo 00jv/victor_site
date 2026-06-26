@@ -10,6 +10,7 @@ import About from "@/components/About";
 import Duvidas from "@/components/Duvidas";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import TechWaves from "@/components/TechWaves";
 
 export default function Home() {
   return (
@@ -42,13 +43,14 @@ export default function Home() {
 
         {/* FAQ Accordions */}
         <Duvidas />
-
-        {/* Contact Form */}
-        <Contact />
       </main>
 
-      {/* Footer Section */}
-      <Footer />
+      {/* Contact and Footer wrapped together for shared background */}
+      <div className="relative w-full overflow-hidden">
+        <TechWaves />
+        <Contact />
+        <Footer />
+      </div>
     </div>
   );
 }

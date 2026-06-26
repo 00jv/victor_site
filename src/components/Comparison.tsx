@@ -1,4 +1,5 @@
 import React from "react";
+import TechAurora from "./TechAurora";
 
 export default function Comparison() {
   const negativePoints = [
@@ -18,7 +19,9 @@ export default function Comparison() {
   ];
 
   return (
-    <section className="px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16" id="diferenca">
+    <div className="relative w-full overflow-hidden">
+      <TechAurora />
+      <section className="relative z-10 px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16" id="diferenca">
       <div className="text-center max-w-3xl mx-auto mb-16">
         <span className="inline-block border border-primary/20 text-primary bg-primary/5 font-label-caps text-label-caps px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
           Metodologia
@@ -76,5 +79,6 @@ export default function Comparison() {
         </div>
       </div>
     </section>
+    </div>
   );
 }

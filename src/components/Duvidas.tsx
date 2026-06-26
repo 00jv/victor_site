@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-
+import TechRings from "./TechRings";
 interface DuvidaItem {
   question: string;
   answer: string;
@@ -38,7 +38,9 @@ export default function Duvidas() {
   };
 
   return (
-    <section className="px-margin-mobile md:px-gutter max-w-3xl mx-auto mb-section-gap pt-16" id="duvidas">
+    <div className="relative w-full overflow-hidden">
+      <TechRings />
+      <section className="relative z-10 px-margin-mobile md:px-gutter max-w-3xl mx-auto mb-section-gap pt-16" id="duvidas">
       <div className="text-center mb-12">
         <span className="inline-block border border-primary/20 text-primary bg-primary/5 font-label-caps text-label-caps px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
           Perguntas & Respostas
@@ -89,5 +91,6 @@ export default function Duvidas() {
         })}
       </div>
     </section>
+    </div>
   );
 }

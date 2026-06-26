@@ -73,16 +73,6 @@
   --spacing-section-gap: 128px;
   --spacing-unit: 4px;
 
-  /* Custom Font Families */
-  --font-body-base: "Open Sans", sans-serif;
-  --font-body-lg: "Open Sans", sans-serif;
-  --font-display-lg-mobile: "Open Sans", sans-serif;
-  --font-headline-sm: "Open Sans", sans-serif;
-  --font-headline-md: "Open Sans", sans-serif;
-  --font-display-lg: "Open Sans", sans-serif;
-  --font-label-caps: "Open Sans", sans-serif;
-  --font-code-snippet: "Courier Prime", monospace;
-
   /* Custom Font Sizes */
   --font-size-body-base: 16px;
   --font-size-body-lg: 18px;
@@ -97,6 +87,8 @@
   --animate-marquee: marquee 30s linear infinite;
   --animate-fade-in: fadeIn 0.5s ease-out forwards;
   --animate-scale-up: scaleUp 0.3s ease-out forwards;
+  --animate-blink: blink 1s step-end infinite;
+  --animate-glitch: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
 
   @keyframes marquee {
     0% { transform: translateX(0); }
@@ -110,10 +102,82 @@
     0% { transform: scale(0.95); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }
   }
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  @keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+  }
 }
 
 body {
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-body-base);
+}
+
+/* Apply Next.js fonts manually to bypass Tailwind v4 @theme variable parsing issues */
+.font-body-base, .font-body-lg, body {
+  font-family: var(--font-inter), sans-serif !important;
+}
+
+.font-display-lg-mobile, .font-headline-sm, .font-headline-md, .font-display-lg, .font-label-caps {
+  font-family: var(--font-space-grotesk), sans-serif !important;
+}
+
+.font-mono {
+  font-family: var(--font-jetbrains-mono), monospace !important;
+}
+
+/* Global Animations for Tech Background Components */
+@keyframes gridMove {
+  0% { transform: rotateX(60deg) translateY(0) translateZ(-200px); }
+  100% { transform: rotateX(60deg) translateY(60px) translateZ(-200px); }
+}
+@keyframes scanner {
+  0% { top: -20%; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { top: 120%; opacity: 0; }
+}
+@keyframes float-purple {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.6; }
+  33% { transform: translate(150px, 100px) scale(1.2); opacity: 0.8; }
+  66% { transform: translate(-100px, 200px) scale(0.8); opacity: 0.4; }
+}
+@keyframes float-cyan {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.5; }
+  33% { transform: translate(-150px, 150px) scale(1.1); opacity: 0.7; }
+  66% { transform: translate(100px, 50px) scale(0.9); opacity: 0.3; }
+}
+@keyframes float-pink {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
+  33% { transform: translate(100px, -150px) scale(1.3); opacity: 0.6; }
+  66% { transform: translate(-50px, -100px) scale(0.7); opacity: 0.2; }
+}
+@keyframes float-particle {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.1; }
+  50% { opacity: 0.7; }
+  100% { transform: translate(var(--tx), var(--ty)) scale(1.5); opacity: 0.2; }
+}
+@keyframes expandRing {
+  0% { transform: scale(0); opacity: 0; border-width: 10px; }
+  5% { opacity: 0.8; }
+  100% { transform: scale(1); opacity: 0; border-width: 1px; }
+}
+@keyframes shoot-line {
+  0% { transform: translateX(0); opacity: 0; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { transform: translateX(2500px); opacity: 0; }
+}
+@keyframes wave-move {
+  0% { transform: translateX(0) scaleY(1); }
+  100% { transform: translateX(-15%) scaleY(1.1); }
 }

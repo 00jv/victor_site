@@ -2,17 +2,19 @@
 
 import React from "react";
 import Image from "next/image";
-
+import TechParticles from "./TechParticles";
 export default function About() {
   return (
-    <section className="px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16" id="about">
+    <div className="relative w-full overflow-hidden">
+      <TechParticles />
+      <section className="relative z-10 px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16" id="about">
       <div className="flex flex-col md:flex-row gap-element-gap items-center md:items-start">
         {/* Profile Image Wrapper */}
         <div className="w-full md:w-1/3">
           <div className="aspect-square bg-slate-900 border border-white/10 rounded-lg overflow-hidden relative">
             <Image
-              src="/images/engineer-portrait.jpg"
-              alt="A moody, professional portrait of João Victor, software engineer working in a dimly lit studio."
+              src="/images/victor_imagem.jpeg"
+              alt="Retrato de João Victor"
               fill
               sizes="(max-width: 768px) 100vw, 33vw"
               className="object-cover grayscale opacity-90 hover:grayscale-0 transition-all duration-500 hover:scale-102"
@@ -41,11 +43,10 @@ export default function About() {
           <div className="mt-8">
             <a
               className="inline-block border border-white/10 text-on-background font-bold px-6 py-3 rounded-full font-label-caps text-[12px] uppercase tracking-wider hover:border-primary hover:text-primary active:scale-95 transition-all duration-200 cursor-pointer"
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                alert("Download do currículo iniciado! (Versão demonstrativa)");
-              }}
+              href="/docs/VICTORFAGUNDESDEMATOS_Currículo.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download
             >
               Download Currículo
             </a>
@@ -53,5 +54,6 @@ export default function About() {
         </div>
       </div>
     </section>
+    </div>
   );
 }

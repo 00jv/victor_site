@@ -1,8 +1,11 @@
 import React from "react";
+import TechGrid from "./TechGrid";
 
 export default function Features() {
   return (
-    <section className="px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16" id="plataforma">
+    <div className="relative w-full overflow-hidden">
+      <TechGrid />
+      <section className="relative z-10 px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16" id="plataforma">
       <div className="max-w-3xl mb-16">
         <span className="inline-block border border-primary/20 text-primary bg-primary/5 font-label-caps text-label-caps px-4 py-1.5 rounded-full mb-4 uppercase tracking-widest">
           Especialidades Técnicas
@@ -162,5 +165,6 @@ export default function Features() {
         </div>
       </div>
     </section>
+    </div>
   );
 }
