@@ -50,15 +50,38 @@ export default function Contact() {
 
     setIsSubmitting(true);
 
-    // Simulate sending time (1.5 seconds)
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: process.env.NEXT_PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE",
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Novo contato de ${formData.name} via Portfólio`,
+        }),
+      });
 
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    setFormData({ name: "", email: "", message: "" });
-
-    // Hide success message after 5 seconds
-    setTimeout(() => setIsSuccess(false), 5000);
+      const result = await response.json();
+      
+      if (result.success) {
+        setIsSuccess(true);
+        setFormData({ name: "", email: "", message: "" });
+        // Hide success message after 5 seconds
+        setTimeout(() => setIsSuccess(false), 5000);
+      } else {
+        alert("Ocorreu um erro ao enviar sua mensagem. Por favor, certifique-se de configurar a chave Web3Forms.");
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      alert("Erro de conexão. Verifique sua rede e tente novamente.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

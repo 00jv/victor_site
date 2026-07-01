@@ -3,6 +3,8 @@
 import React from "react";
 import Image from "next/image";
 import TechParticles from "./TechParticles";
+import GithubStats from "./GithubStats";
+
 export default function About() {
   return (
     <div className="relative w-full overflow-hidden">
@@ -10,8 +12,8 @@ export default function About() {
       <section className="relative z-10 px-margin-mobile md:px-gutter max-w-container-max mx-auto mb-section-gap pt-16" id="about">
       <div className="flex flex-col md:flex-row gap-element-gap items-center md:items-start">
         {/* Profile Image Wrapper */}
-        <div className="w-full md:w-1/3">
-          <div className="aspect-square bg-slate-900 border border-white/10 rounded-lg overflow-hidden relative">
+        <div className="w-full md:w-1/3 flex flex-col items-center">
+          <div className="w-full aspect-square bg-slate-900 border border-white/10 rounded-lg overflow-hidden relative">
             <Image
               src="/images/victor_imagem.jpeg"
               alt="Retrato de João Victor"
@@ -20,6 +22,7 @@ export default function About() {
               className="object-cover grayscale opacity-90 hover:grayscale-0 transition-all duration-500 hover:scale-102"
             />
           </div>
+          <GithubStats />
         </div>
 
         {/* Text Content Wrapper */}
