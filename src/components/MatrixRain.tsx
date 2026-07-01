@@ -30,11 +30,16 @@ export default function MatrixRain() {
 
     const draw = () => {
       // Black background with opacity to create trail effect
+      ctx.globalAlpha = 1;
       ctx.fillStyle = "rgba(6, 4, 10, 0.05)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+      // Read current primary color dynamically from CSS variables on document root
+      const primaryColor = getComputedStyle(document.documentElement).getPropertyValue('--color-primary').trim() || "#bd00ff";
+
       // Setup text
-      ctx.fillStyle = "rgba(189, 0, 255, 0.85)"; // High brightness primary color
+      ctx.globalAlpha = 0.85;
+      ctx.fillStyle = primaryColor;
       ctx.font = fontSize + "px monospace";
 
       for (let i = 0; i < drops.length; i++) {
