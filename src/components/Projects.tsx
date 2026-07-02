@@ -21,8 +21,8 @@ const projects: Project[] = [
   },
   {
     title: "Clube Estrelinhas",
-    description: "Plataforma gamificada para engajamento e fidelidade infantil em escolas. Inclui controle de pontos, resgate de recompensas e relatórios pedagógicos.",
-    tags: ["React", "TypeScript", "Node.js"],
+    description: "E-commerce de moda em crochê e alta cordoaria. Plataforma focada em peças artesanais exclusivas com catálogo, checkout e painel administrativo.",
+    tags: ["Next.js", "TypeScript", "Node.js"],
     link: "https://github.com/00jv/clube-estrelinhas-frontend",
     iconType: "estrelinhas",
   },
@@ -542,17 +542,27 @@ export default function Projects() {
                       </span>
                     ))}
                   </div>
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-[11px] font-bold font-label-caps text-primary hover:text-primary-fixed hover:underline flex items-center gap-1.5 mt-2 transition-colors active:scale-95"
-                    >
-                      Visualizar Código / Site
-                      <span className="material-symbols-outlined text-[13px]">open_in_new</span>
-                    </a>
-                  )}
+                  <div className="flex justify-between items-center mt-2 flex-wrap gap-2">
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[11px] font-bold font-label-caps text-primary hover:text-primary-fixed hover:underline flex items-center gap-1.5 transition-colors active:scale-95"
+                      >
+                        Visualizar Código / Site
+                        <span className="material-symbols-outlined text-[13px]">open_in_new</span>
+                      </a>
+                    )}
+                    {project.iconType === "mario" && (
+                      <button
+                        onClick={() => window.dispatchEvent(new CustomEvent("toggle-mario-game", { detail: { open: true } }))}
+                        className="text-[11px] font-bold font-label-caps text-green-400 hover:text-green-300 hover:underline flex items-center gap-1 transition-colors active:scale-95 cursor-pointer bg-transparent border-none p-0"
+                      >
+                        Jogar Minigame 🎮
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

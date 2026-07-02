@@ -256,7 +256,13 @@ export default function Skills() {
         {categories[activeCategory].items.map((skill, index) => (
           <div
             key={index}
-            className="bg-surface border border-white/5 rounded-xl p-6 flex flex-col justify-between hover:border-white/15 transition-all group duration-300 hover:-translate-y-1"
+            className={`bg-surface border border-white/5 rounded-xl p-6 flex flex-col justify-between transition-all group duration-300 hover:-translate-y-1 ${
+              skill.level === "Especialista"
+                ? "hover:border-primary/40 hover:shadow-[0_0_20px_rgba(189,0,255,0.12)]"
+                : skill.level === "Intermediário"
+                  ? "hover:border-[#00f3ff]/40 hover:shadow-[0_0_20px_rgba(0,243,255,0.12)]"
+                  : "hover:border-amber-400/40 hover:shadow-[0_0_20px_rgba(251,191,36,0.12)]"
+            }`}
           >
             <div>
               {/* Skill Info Bar */}
@@ -293,7 +299,7 @@ export default function Skills() {
               </div>
               <div className="w-full bg-background h-1.5 rounded-full overflow-hidden border border-white/5">
                 <div
-                  className={`h-full rounded-full transition-all duration-1000 ease-out ${
+                  className={`h-full rounded-full transition-all duration-1000 ease-out group-hover:animate-pulse ${
                     skill.level === "Especialista"
                       ? "bg-primary"
                       : skill.level === "Intermediário"

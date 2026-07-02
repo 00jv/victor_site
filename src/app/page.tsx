@@ -17,6 +17,9 @@ import Footer from "@/components/Footer";
 import TechWaves from "@/components/TechWaves";
 import Loader from "@/components/Loader";
 import CommandPalette from "@/components/CommandPalette";
+import MarioGame from "@/components/MarioGame";
+import MusicPlayer from "@/components/MusicPlayer";
+import KonamiCode from "@/components/KonamiCode";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -61,6 +64,7 @@ export default function Home() {
 
         {/* FAQ Accordions */}
         <Duvidas />
+
       </main>
 
       {/* Contact and Footer wrapped together for shared background */}
@@ -72,6 +76,15 @@ export default function Home() {
 
       {/* Global Command Palette */}
       <CommandPalette />
+
+      {/* Retro Dev Mario Minigame */}
+      <MarioGame />
+
+      {/* Retro Cassette Music Player */}
+      <MusicPlayer />
+
+      {/* Konami Code Listener */}
+      <KonamiCode />
     </div>
   );
 }

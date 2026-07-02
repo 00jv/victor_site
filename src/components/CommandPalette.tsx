@@ -105,6 +105,7 @@ export default function CommandPalette() {
     // Actions
     { id: "action-resume", category: "Ações", label: "Baixar Currículo (PDF)", shortcut: "D R", action: downloadResume },
     { id: "action-email", category: "Ações", label: "Copiar E-mail de Contato", shortcut: "C E", action: copyEmail },
+    { id: "action-mario", category: "Ações", label: "Jogar Minigame (Dev Mario)", shortcut: "J M", action: () => { window.dispatchEvent(new CustomEvent("toggle-mario-game", { detail: { open: true } })); setIsOpen(false); } },
   ];
 
   // Global keyboard listeners to open/close
