@@ -26,7 +26,11 @@ const playlist: Track[] = [
   }
 ];
 
-export default function MusicPlayer() {
+interface MusicPlayerProps {
+  hideFloatingButton?: boolean;
+}
+
+export default function MusicPlayer({ hideFloatingButton = false }: MusicPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTrackIndex, setCurrentTrackIndex] = useState(0);
   const [volume, setVolume] = useState(0.2); // Start soft
@@ -35,6 +39,54 @@ export default function MusicPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const currentTrack = playlist[currentTrackIndex];
+
+  // Auto-play on mount, handling autoplay policies
+  useEffect(() => {
+    // Only initialize once
+    if (!audioRef.current) {
+      audioRef.current = new Audio(playlist[0].url);
+      audioRef.current.volume = volume;
+      audioRef.current.loop = true;
+    }
+
+    let hasStartedPlaying = false;
+
+    const playAudio = () => {
+      if (audioRef.current && !hasStartedPlaying) {
+        audioRef.current.play()
+          .then(() => {
+            setIsPlaying(true);
+            hasStartedPlaying = true;
+            removeInteractionListeners();
+          })
+          .catch((error) => {
+            console.log("Autoplay blocked or failed. Waiting for user interaction...", error);
+          });
+      }
+    };
+
+    const handleInteraction = () => {
+      playAudio();
+    };
+
+    const removeInteractionListeners = () => {
+      document.removeEventListener("click", handleInteraction);
+      document.removeEventListener("keydown", handleInteraction);
+      document.removeEventListener("touchstart", handleInteraction);
+    };
+
+    // Try playing immediately
+    playAudio();
+
+    // Set up listeners for interaction in case playAudio was blocked
+    document.addEventListener("click", handleInteraction);
+    document.addEventListener("keydown", handleInteraction);
+    document.addEventListener("touchstart", handleInteraction);
+
+    return () => {
+      removeInteractionListeners();
+    };
+  }, []);
 
   // Sync volume
   useEffect(() => {
@@ -87,6 +139,8 @@ export default function MusicPlayer() {
       }
     };
   }, []);
+
+  if (hideFloatingButton) return null;
 
   return (
     <div className="fixed bottom-6 left-6 z-40 font-mono text-[10px]">

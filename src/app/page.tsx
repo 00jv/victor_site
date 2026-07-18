@@ -24,67 +24,69 @@ import KonamiCode from "@/components/KonamiCode";
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
-  if (isLoading) {
-    return <Loader onComplete={() => setIsLoading(false)} />;
-  }
-
   return (
-    <div className="min-h-screen flex flex-col justify-between overflow-x-hidden animate-fade-in">
-      {/* Navigation Header */}
-      <Header />
+    <>
+      {isLoading ? (
+        <Loader onComplete={() => setIsLoading(false)} />
+      ) : (
+        <div className="min-h-screen flex flex-col justify-between overflow-x-hidden animate-fade-in">
+          {/* Navigation Header */}
+          <Header />
 
-      {/* Main Sections */}
-      <main className="flex-grow">
-        {/* Hero Section */}
-        <Hero />
+          {/* Main Sections */}
+          <main className="flex-grow">
+            {/* Hero Section */}
+            <Hero />
 
-        {/* Infinite Looping Banner */}
-        <Marquee />
+            {/* Infinite Looping Banner */}
+            <Marquee />
 
-        {/* Métricas de Engenharia */}
-        <Stats />
+            {/* Métricas de Engenharia */}
+            <Stats />
 
-        {/* Services & CSS Mockups */}
-        <Features />
+            {/* Services & CSS Mockups */}
+            <Features />
 
-        {/* Comparison Card Grid */}
-        <Comparison />
+            {/* Comparison Card Grid */}
+            <Comparison />
 
-        {/* Trajetória Experience Timeline */}
-        <Experience />
+            {/* Trajetória Experience Timeline */}
+            <Experience />
 
-        {/* Stack Tecnológica */}
-        <Skills />
+            {/* Stack Tecnológica */}
+            <Skills />
 
-        {/* Projetos Selecionados */}
-        <Projects />
+            {/* Projetos Selecionados */}
+            <Projects />
 
-        {/* About Biography */}
-        <About />
+            {/* About Biography */}
+            <About />
 
-        {/* FAQ Accordions */}
-        <Duvidas />
+            {/* FAQ Accordions */}
+            <Duvidas />
 
-      </main>
+          </main>
 
-      {/* Contact and Footer wrapped together for shared background */}
-      <div className="relative w-full overflow-hidden">
-        <TechWaves />
-        <Contact />
-        <Footer />
-      </div>
+          {/* Contact and Footer wrapped together for shared background */}
+          <div className="relative w-full overflow-hidden">
+            <TechWaves />
+            <Contact />
+            <Footer />
+          </div>
 
-      {/* Global Command Palette */}
-      <CommandPalette />
+          {/* Global Command Palette */}
+          <CommandPalette />
 
-      {/* Retro Dev Mario Minigame */}
-      <MarioGame />
+          {/* Retro Dev Mario Minigame */}
+          <MarioGame />
+
+          {/* Konami Code Listener */}
+          <KonamiCode />
+        </div>
+      )}
 
       {/* Retro Cassette Music Player */}
-      <MusicPlayer />
-
-      {/* Konami Code Listener */}
-      <KonamiCode />
-    </div>
+      <MusicPlayer hideFloatingButton={isLoading} />
+    </>
   );
 }
