@@ -144,22 +144,6 @@ export default function MusicPlayer({ hideFloatingButton = false }: MusicPlayerP
 
   return (
     <div className="fixed bottom-6 left-6 z-40 font-mono text-[10px]">
-      <style>{`
-        @keyframes reelSpin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-        .animate-reel-spin {
-          animation: reelSpin 4s linear infinite;
-        }
-        @keyframes visBar {
-          0%, 100% { height: 3px; }
-          50% { height: 16px; }
-        }
-        .vis-bar {
-          animation: visBar 1s ease-in-out infinite;
-        }
-      `}</style>
 
       {isMinimized ? (
         // Minimized floating button
